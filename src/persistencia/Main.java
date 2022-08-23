@@ -16,16 +16,19 @@ public class Main {
 
     public static void main(String[] args) {
         String[] vetorDePalavras = null;
-        
+
         try {
             vetorDePalavras = LeitorArquivo.leitorArquivo("portugues_brazil.txt");
+            System.out.println("leu o arquivo");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+        System.out.println("começando a ordenar o vetor...");
         OrdenaVetor.SelectionSort(vetorDePalavras);
-        
-        
+        System.out.println("terminou de ordenar o vetor ;)");
+
+        System.out.println("começando a mostrar o resultado na tela...");
         for (int i = 0; i < vetorDePalavras.length; i++) {
             System.out.println(vetorDePalavras[i]);
         }

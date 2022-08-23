@@ -21,6 +21,9 @@ public class OrdenaVetor {
             String smallerNumber = vet[index];//    * trocando valores
             vet[index] = vet[i];
             vet[i] = smallerNumber;
+            
+//            System.out.printf("%.5f%s concluído\n", (double)i/vet.length, "%");// * mostrar porcentagem de conclusão do vetor;
+            
         }
 //  * terminou a ordenação e como é por referencia não precisa retornar nada
     }
@@ -91,7 +94,7 @@ public class OrdenaVetor {
     }
     private static void intercala(String[] vetor, int inicio, int meio, int fim) {
     /* Vetor utilizado para guardar os valors ordenados. */
-    int novoVetor[] = new int[fim - inicio];
+    String novoVetor[] = new String[fim - inicio];
     /* Variavel utilizada para guardar a posicao do inicio do vetor. */
     int i = inicio;
     /* Variavel utilizada para guardar a posição do meio do vetor. */
@@ -106,7 +109,7 @@ public class OrdenaVetor {
     while(i < meio && m < fim) {
       /* Se o vetor[i] for menor que o vetor[m], então guarda o valor do
         vetor[i] pois este é menor. */
-      if(vetor[i] <= vetor[m]) {
+      if(vetor[i].length() <= vetor[m].length()) {
         novoVetor[pos] = vetor[i];
         pos = pos + 1;
         i = i + 1;
