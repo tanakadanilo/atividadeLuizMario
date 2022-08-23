@@ -25,7 +25,7 @@ public class Main {
         }
 
         System.out.println("começando a ordenar o vetor...");
-        OrdenaVetor.SelectionSort(vetorDePalavras);
+        OrdenaVetor.mergeSort(vetorDePalavras.length, vetorDePalavras);
         System.out.println("terminou de ordenar o vetor ;)");
 
         System.out.println("começando a mostrar o resultado na tela...");
