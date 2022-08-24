@@ -14,27 +14,24 @@ import java.util.logging.Logger;
  */
 public class Main {
 
+    static String[] vetorDePalavras = null;
+
     public static void main(String[] args) {
         try {
-            String[] vetorDePalavras = null;
-            long tempoInicial = System.currentTimeMillis();
 
-            vetorDePalavras = LeitorArquivo.leitorArquivo("portugues_brazil.txt");
-            System.out.println("leu o arquivo");
+            vetorDePalavras = LeitorArquivo.leitorArquivo("english_usa.txt");
+            String[] vetorDePalavras2 = vetorDePalavras.clone();
+            String[] vetorDePalavras3 = vetorDePalavras.clone();
+            String[] vetorDePalavras4 = vetorDePalavras.clone();
 
-            System.out.println("começando a ordenar o vetor...");
-            OrdenaVetor.mergeSort(vetorDePalavras.length, vetorDePalavras);
-            System.out.println("terminou de ordenar o vetor ;)");
-
-            System.out.println("começando a mostrar o resultado na tela...");
-            for (int i = 0; i < vetorDePalavras.length; i++) {
-                System.out.println(vetorDePalavras[i]);
-            }
-            System.out.println("tempo de execução: " + (System.currentTimeMillis() - tempoInicial));
+            mostraTexto("mergeSort");
+            mostraTexto("bubbleSort");
+            mostraTexto("insertionSort");
+            mostraTexto("selectionSort");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         try {
             EscrevinhadorDeArguivoz.EscritorArquivo("saída.txt");
         } catch (IOException ex) {
@@ -42,5 +39,30 @@ public class Main {
         }
 
     }
+
+    public static void mostraTexto(String nomeAlgoritmo) {
+        long tempoInicial = System.currentTimeMillis();
+
+//        System.out.println("leu o arquivo");
+//        System.out.println("começando a ordenar o vetor, usando " + nomeAlgoritmo + "...");
+        switch (nomeAlgoritmo) {
+            case "mergeSort" ->
+                OrdenaVetor.mergeSort(vetorDePalavras.length, vetorDePalavras);
+            case "selectionSort" ->
+                OrdenaVetor.SelectionSort(vetorDePalavras);
+            case "bubbleSort" ->
+                OrdenaVetor.bubleSort(vetorDePalavras);
+            case "insertionSort" ->
+                OrdenaVetor.insertionSort(vetorDePalavras);
+            default -> {
+            }
+        }
+//        System.out.println("terminou de ordenar o vetor ;)");
+
+//        System.out.println("começando a mostrar o resultado na tela...");
+//        for (int i = 0; i < vetorDePalavras.length; i++) {
+//            System.out.println(vetorDePalavras[i]);
+//        }
+        System.out.println("tempo de execução do " + nomeAlgoritmo + ": " + (System.currentTimeMillis() - tempoInicial));
+    }
 }
-        

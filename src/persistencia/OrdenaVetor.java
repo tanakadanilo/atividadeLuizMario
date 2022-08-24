@@ -21,9 +21,9 @@ public class OrdenaVetor {
             String smallerNumber = vet[index];//    * trocando valores
             vet[index] = vet[i];
             vet[i] = smallerNumber;
-            
-//            System.out.printf("%.5f%s concluído\n", (double)i/vet.length, "%");// * mostrar porcentagem de conclusão do vetor;
-            
+
+            System.out.printf("%.5f%s concluído\n", ((double) i / vet.length) * 100, "%");// * mostrar porcentagem de conclusão do vetor;
+
         }
 //  * terminou a ordenação e como é por referencia não precisa retornar nada
     }
@@ -53,7 +53,7 @@ public class OrdenaVetor {
     }
 
     public static void mergeSort(int tamanho, String[] vet) {
-          
+
 
         /* Variavel utilizada para percorrer o vetor. 
       Inicializa com 1 para indicar que o vetor tenha pelo menos 1 elemento. */
@@ -92,54 +92,55 @@ public class OrdenaVetor {
             elementos = elementos * 2;
         }
     }
+
     private static void intercala(String[] vetor, int inicio, int meio, int fim) {
-    /* Vetor utilizado para guardar os valors ordenados. */
-    String novoVetor[] = new String[fim - inicio];
-    /* Variavel utilizada para guardar a posicao do inicio do vetor. */
-    int i = inicio;
-    /* Variavel utilizada para guardar a posição do meio do vetor. */
-    int m = meio;
-    /* Variavel utilizada para guarda a posição onde os
+        /* Vetor utilizado para guardar os valors ordenados. */
+        String novoVetor[] = new String[fim - inicio];
+        /* Variavel utilizada para guardar a posicao do inicio do vetor. */
+        int i = inicio;
+        /* Variavel utilizada para guardar a posição do meio do vetor. */
+        int m = meio;
+        /* Variavel utilizada para guarda a posição onde os
       valores serão inseridos no novo vetor. */
-    int pos = 0;
-    
-    /* Enquanto o inicio não chegar até o meio do vetor, ou o meio do vetor
+        int pos = 0;
+
+        /* Enquanto o inicio não chegar até o meio do vetor, ou o meio do vetor
       não chegar até seu fim, compara os valores entre o inicio e o meio,
       verificando em qual ordem vai guarda-los ordenado.*/
-    while(i < meio && m < fim) {
-      /* Se o vetor[i] for menor que o vetor[m], então guarda o valor do
+        while (i < meio && m < fim) {
+            /* Se o vetor[i] for menor que o vetor[m], então guarda o valor do
         vetor[i] pois este é menor. */
-      if(vetor[i].length() <= vetor[m].length()) {
-        novoVetor[pos] = vetor[i];
-        pos = pos + 1;
-        i = i + 1;
-      // Senão guarda o valor do vetor[m] pois este é o menor.
-      } else {
-        novoVetor[pos] = vetor[m];
-        pos = pos + 1;
-        m = m + 1;
-      }
+            if (vetor[i].length() <= vetor[m].length()) {
+                novoVetor[pos] = vetor[i];
+                pos = pos + 1;
+                i = i + 1;
+                // Senão guarda o valor do vetor[m] pois este é o menor.
+            } else {
+                novoVetor[pos] = vetor[m];
+                pos = pos + 1;
+                m = m + 1;
+            }
+        }
+
+        // Adicionar no vetor os elementos que estão entre o inicio e meio,
+        // que ainda não foram adicionados no vetor.
+        while (i < meio) {
+            novoVetor[pos] = vetor[i];
+            pos = pos + 1;
+            i = i + 1;
+        }
+
+        // Adicionar no vetor os elementos que estão entre o meio e o fim,
+        // que ainda não foram adicionados no vetor.
+        while (m < fim) {
+            novoVetor[pos] = vetor[m];
+            pos = pos + 1;
+            m = m + 1;
+        }
+
+        // Coloca no vetor os valores já ordenados.
+        for (pos = 0, i = inicio; i < fim; i++, pos++) {
+            vetor[i] = novoVetor[pos];
+        }
     }
-    
-    // Adicionar no vetor os elementos que estão entre o inicio e meio,
-    // que ainda não foram adicionados no vetor.
-    while(i < meio) {
-      novoVetor[pos] = vetor[i];
-      pos = pos + 1;
-      i = i + 1;
-    }
-    
-    // Adicionar no vetor os elementos que estão entre o meio e o fim,
-    // que ainda não foram adicionados no vetor.
-    while(m < fim) {
-      novoVetor[pos] = vetor[m];
-      pos = pos + 1;
-      m = m + 1;
-    }
-    
-    // Coloca no vetor os valores já ordenados.
-    for(pos = 0, i = inicio; i < fim; i++, pos++) {
-      vetor[i] = novoVetor[pos];
-    }
-  }
 }
