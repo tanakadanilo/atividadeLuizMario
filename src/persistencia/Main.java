@@ -24,21 +24,21 @@ public class Main {
             String[] vetorDePalavras3 = vetorDePalavras.clone();
             String[] vetorDePalavras4 = vetorDePalavras.clone();
 
-//            mostraTexto("mergeSort");
+            mostraTexto("mergeSort");
 //            mostraTexto("bubbleSort");
 //            mostraTexto("insertionSort");
 //            mostraTexto("selectionSort");
 
-            System.out.println(Buscas.buscaBinaria("abesajo/243", vetorDePalavras, false));
+            System.out.println(Buscas.buscaBinaria(vetorDePalavras[22432] , vetorDePalavras));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        try {
-            EscrevinhadorDeArguivoz.EscritorArquivo("saída.txt");
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            EscrevinhadorDeArguivoz.EscritorArquivo("saída.txt");
+//        } catch (IOException ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
 
