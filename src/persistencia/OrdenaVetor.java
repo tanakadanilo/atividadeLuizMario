@@ -52,6 +52,14 @@ public class OrdenaVetor {
         }
     }
 
+    public static void quickSort(String[] vetor, int inicio, int fim) {
+        if (inicio < fim) {
+            int posicaoPivo = dividir(vetor, inicio, fim);
+            quickSort(vetor, inicio, posicaoPivo - 1);
+            quickSort(vetor, posicaoPivo + 1, fim);
+        }
+    }
+
     public static void mergeSort(int tamanho, String[] vet) {
 
 
@@ -142,5 +150,45 @@ public class OrdenaVetor {
         for (pos = 0, i = inicio; i < fim; i++, pos++) {
             vetor[i] = novoVetor[pos];
         }
+    }
+
+    private static int dividir(String[] vetor, int inicio, int fim) {
+        String pivo;
+        int pontEsq, pontDir = fim;
+        pontEsq = inicio + 1;
+        pivo = vetor[inicio];
+
+        while (pontEsq <= pontDir) {
+            /* Vai correr o vetor ate que ultrapasse o outro ponteiro
+        ou ate que o elemento em questão seja menor que o pivô. */
+            while (pontEsq <= pontDir && vetor[pontEsq].length() <= pivo.length()) {
+                pontEsq++;
+            }
+
+            /* Vai correr o vetor ate que ultrapasse o outro ponteiro
+        que o elemento em questão seja maior que o pivô. */
+            while (pontDir >= pontEsq
+                    && vetor[pontDir].length() > pivo.length()) {
+                pontDir--;
+            }
+
+            /* Caso os ponteiros ainda nao tenham se cruzado, significa que valores
+        menores e maiores que o pivô foram localizados em ambos os lados.
+        Trocar estes elementos de lado. */
+            if (pontEsq < pontDir) {
+                trocar(vetor, pontDir, pontEsq);
+                pontEsq++;
+                pontDir--;
+            }
+        }
+
+        trocar(vetor, inicio, pontDir);
+        return pontDir;
+    }
+
+    private static void trocar(String[] vetor, int i, int j) {
+        String temp = vetor[i];
+        vetor[i] = vetor[j];
+        vetor[j] = temp;
     }
 }

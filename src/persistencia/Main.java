@@ -24,10 +24,12 @@ public class Main {
             String[] vetorDePalavras3 = vetorDePalavras.clone();
             String[] vetorDePalavras4 = vetorDePalavras.clone();
 
-            mostraTexto("mergeSort");
-            mostraTexto("bubbleSort");
-            mostraTexto("insertionSort");
-            mostraTexto("selectionSort");
+//            mostraTexto("mergeSort");
+//            mostraTexto("bubbleSort");
+//            mostraTexto("insertionSort");
+//            mostraTexto("selectionSort");
+
+            System.out.println(Buscas.buscaBinaria("abesajo/243", vetorDePalavras, false));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
