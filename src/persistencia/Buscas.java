@@ -24,22 +24,6 @@ public class Buscas {
         return false;
     }
 
-    private static boolean binarySearch(String[] vet, String palavraBuscada, int low, int high) {
-        if (low > high) {
-            return false;
-        }
-
-        int mid = (low + high) / 2;
-
-        if (vet[mid].compareTo(palavraBuscada) < 0) {
-            return binarySearch(vet, palavraBuscada, mid + 1, high);
-        } else if (vet[mid].compareTo(palavraBuscada) > 0) {
-            return binarySearch(vet, palavraBuscada, low, mid - 1);
-        } else {
-            return true;
-        }
-    }
-
     private static int binarySearch(String[] vet, int quantidadeDeLetrasDaPalavra, int low, int high) {
         if (low > high) {
             return -1;

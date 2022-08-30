@@ -20,6 +20,11 @@ public class LeitorArquivo {
             String[] palavrasDic = new String[numeroDeLinhas];
             for (int i = 0; i < palavrasDic.length; i++) {
                 palavrasDic[i] = br.readLine();
+                if (palavrasDic[i].indexOf("/") > 0) {
+                    palavrasDic[i] = palavrasDic[i].substring(0, palavrasDic[i].indexOf("/"));
+                }
+                
+                
             }
             return palavrasDic;
 }

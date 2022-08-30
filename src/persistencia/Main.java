@@ -53,7 +53,7 @@ public class Main {
             case "selectionSort" ->
                 OrdenaVetor.SelectionSort(vetorDePalavras);
             case "bubbleSort" ->
-                OrdenaVetor.bubleSort(vetorDePalavras);
+                OrdenaVetor.bubbleSort(vetorDePalavras);
             case "insertionSort" ->
                 OrdenaVetor.insertionSort(vetorDePalavras);
             default -> {

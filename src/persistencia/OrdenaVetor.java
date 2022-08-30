@@ -28,7 +28,7 @@ public class OrdenaVetor {
 //  * terminou a ordenação e como é por referencia não precisa retornar nada
     }
 
-    public static void bubleSort(String[] vet) {
+    public static void bubbleSort(String[] vet) {
         for (int i = 0; i < vet.length - 1; i++) {//    * i guarda a quantidade de vezes que irá passar pelo vetor
             for (int j = 0; j < vet.length - 1 - i; j++) {//    * j guarda a posição do primeiro valor do vetor já ordenado
                 if (vet[j].length() > vet[j + 1].length()) {//  * achou um valor fora de ordem, em relação com o valor subsequente
