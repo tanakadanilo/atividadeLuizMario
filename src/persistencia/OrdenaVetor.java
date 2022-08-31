@@ -21,10 +21,9 @@ public class OrdenaVetor {
             String smallerNumber = vet[index];//    * trocando valores
             vet[index] = vet[i];
             vet[i] = smallerNumber;
-
             System.out.printf("%.5f%s concluído\n", ((double) i / vet.length) * 100, "%");// * mostrar porcentagem de conclusão do vetor;
-
-        }
+    
+        }System.out.println("Ordenacao concluida.");
 //  * terminou a ordenação e como é por referencia não precisa retornar nada
     }
 
@@ -37,7 +36,8 @@ public class OrdenaVetor {
                     vet[j + 1] = aux;
                 }
             }
-        }
+            System.out.printf("%.5f%s concluído\n", ((double) i / vet.length) * 100, "%");// * mostrar porcentagem de conclusão do vetor;
+        }System.out.println("Ordenacao concluida.");
     }
 
     public static void insertionSort(String[] vet) {
@@ -49,7 +49,8 @@ public class OrdenaVetor {
                 i--;
             }
             vet[i + 1] = key;// * colocando a palavra atual na posição correta dentro do vetor ordenado
-        }
+            System.out.printf("%.5f%s concluído\n", ((double) i / vet.length) * 100, "%");// * mostrar porcentagem de conclusão do vetor;
+        }System.out.println("Ordenacao concluida.");
     }
 
     public static void quickSort(String[] vetor, int inicio, int fim) {

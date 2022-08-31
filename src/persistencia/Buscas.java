@@ -65,16 +65,16 @@ public class Buscas {
         }
         return false;
     }
-//    public static boolean buscaBinaria(String palavraBusca, String[] listaPalavras, boolean jaOrdenado) {
-//        if (jaOrdenado) {
-//            return binarySearch(listaPalavras, palavraBusca, 0, listaPalavras.length);
-//        } else {//  * lista não ordenada
-//            List<String> lista = new ArrayList<>();
-//            lista.addAll(Arrays.asList(listaPalavras));
-//            lista = lista.stream().filter(x -> x.length() == palavraBusca.length()).sorted((o1, o2) -> o1.compareTo(o2)).toList();
-//            listaPalavras = lista.toArray(listaPalavras);
-//            return buscaBinaria(palavraBusca, listaPalavras, true);
-//        }
-//    }
+    /*public static boolean buscaBinaria(String palavraBusca, String[] listaPalavras, boolean jaOrdenado) {
+    if (jaOrdenado) {
+    return binarySearch(listaPalavras, palavraBusca, 0, listaPalavras.length);
+    } else {//  * lista não ordenada
+    List<String> lista = new ArrayList<>();
+    lista.addAll(Arrays.asList(listaPalavras));
+    lista = lista.stream().filter(x -> x.length() == palavraBusca.length()).sorted((o1, o2) -> o1.compareTo(o2)).toList();
+    listaPalavras = lista.toArray(listaPalavras);
+    return buscaBinaria(palavraBusca, listaPalavras, true);
+    }
+    }*/
 
 }
