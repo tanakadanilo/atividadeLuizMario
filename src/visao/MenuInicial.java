@@ -309,7 +309,7 @@ public class MenuInicial extends javax.swing.JFrame {
             OrdenaVetor.insertionSort(dicionario);
             resposta = Buscas.buscaBinaria(palavraABuscar(), dicionario);
         } else if (jRadioButtonMerge.isSelected()) {
-            OrdenaVetor.mergeSort(0, dicionario);
+            OrdenaVetor.mergeSort(dicionario.length, dicionario);
             resposta = Buscas.buscaBinaria(palavraABuscar(), dicionario);
         } else if (jRadioButtonQuick.isSelected()) {
             OrdenaVetor.quickSort(dicionario, 0, dicionario.length);
