@@ -5,6 +5,7 @@
 package visao;
 
 import java.io.IOException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -71,6 +72,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextFieldPalavra = new javax.swing.JTextField();
         jLabelResposta = new javax.swing.JLabel();
+        jLabelTempo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,7 +93,7 @@ public class MenuInicial extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(209, 209, 209)
                 .addComponent(jLabel1)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +152,11 @@ public class MenuInicial extends javax.swing.JFrame {
         });
 
         jLabelResposta.setForeground(new java.awt.Color(153, 153, 153));
-        jLabelResposta.setText("                                 RESPOSTA");
+        jLabelResposta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelResposta.setText("RESPOSTA");
+
+        jLabelTempo.setForeground(new java.awt.Color(153, 153, 153));
+        jLabelTempo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -195,8 +201,10 @@ public class MenuInicial extends javax.swing.JFrame {
                             .addGap(29, 29, 29)
                             .addComponent(jComboBoxIdiomas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(jLabelResposta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(116, 116, 116)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelTempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelResposta, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -235,9 +243,11 @@ public class MenuInicial extends javax.swing.JFrame {
                             .addComponent(jButton2))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButtonQuick)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGap(65, 65, 65)
                 .addComponent(jLabelResposta)
-                .addGap(46, 46, 46))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTempo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -261,30 +271,43 @@ public class MenuInicial extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String[] dicionario;
         boolean resposta = false;
+        long respostaTempo = 0;
         try {
             dicionario = selecionaIdioma();
 
             if (jRadioButtonSelection.isSelected()) {
+                long tempoInicial = System.currentTimeMillis();
                 OrdenaVetor.SelectionSort(dicionario);
                 resposta = Buscas.buscaSequencial(palavraABuscar(), dicionario);
+                long tempoFinal = (System.currentTimeMillis() - tempoInicial);
             } else if (jRadioButtonBubble.isSelected()) {
+                long tempoInicial = System.currentTimeMillis();
                 OrdenaVetor.bubbleSort(dicionario);
                 resposta = Buscas.buscaSequencial(palavraABuscar(), dicionario);
+                long tempoFinal = (System.currentTimeMillis() - tempoInicial);
             } else if (jRadioButtonInsertion.isSelected()) {
+                long tempoInicial = System.currentTimeMillis();
                 OrdenaVetor.insertionSort(dicionario);
                 resposta = Buscas.buscaSequencial(palavraABuscar(), dicionario);
+                long tempoFinal = (System.currentTimeMillis() - tempoInicial);
             } else if (jRadioButtonMerge.isSelected()) {
+                long tempoInicial = System.currentTimeMillis();
                 OrdenaVetor.mergeSort(0, dicionario);
                 resposta = Buscas.buscaSequencial(palavraABuscar(), dicionario);
+                long tempoFinal = (System.currentTimeMillis() - tempoInicial);
             } else if (jRadioButtonQuick.isSelected()) {
-                OrdenaVetor.quickSort(dicionario, 0, dicionario.length);
+                long tempoInicial = System.currentTimeMillis();
+                OrdenaVetor.quickSort(dicionario, 0, dicionario.length-1);
                 resposta = Buscas.buscaSequencial(palavraABuscar(), dicionario);
+                long tempoFinal = (System.currentTimeMillis() - tempoInicial);
+                respostaTempo = tempoFinal;
             }
             if (resposta) {
             jLabelResposta.setText("A palavra buscada está no dicionário do idioma.");
         } else {
             jLabelResposta.setText("A palavra buscada não está no dicionário do idioma.");
         }
+            jLabelTempo.setText("Tempo de execucao: " + respostaTempo + "ms");
         } catch (IOException ex) {
             Logger.getLogger(MenuInicial.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -299,21 +322,33 @@ public class MenuInicial extends javax.swing.JFrame {
         try {
             dicionario = selecionaIdioma(); 
         boolean resposta = false;
+        long respostaTempo = 0;
         if (jRadioButtonSelection.isSelected()) {
+            long tempoInicial = System.currentTimeMillis();
             OrdenaVetor.SelectionSort(dicionario);
             resposta = Buscas.buscaBinaria(palavraABuscar(), dicionario);
+            long tempoFinal = (System.currentTimeMillis() - tempoInicial);
         } else if (jRadioButtonBubble.isSelected()) {
+            long tempoInicial = System.currentTimeMillis();
             OrdenaVetor.bubbleSort(dicionario);
             resposta = Buscas.buscaBinaria(palavraABuscar(), dicionario);
+            long tempoFinal = (System.currentTimeMillis() - tempoInicial);
         } else if (jRadioButtonInsertion.isSelected()) {
+            long tempoInicial = System.currentTimeMillis();
             OrdenaVetor.insertionSort(dicionario);
             resposta = Buscas.buscaBinaria(palavraABuscar(), dicionario);
+            long tempoFinal = (System.currentTimeMillis() - tempoInicial);
         } else if (jRadioButtonMerge.isSelected()) {
+            long tempoInicial = System.currentTimeMillis();
             OrdenaVetor.mergeSort(dicionario.length, dicionario);
             resposta = Buscas.buscaBinaria(palavraABuscar(), dicionario);
+            long tempoFinal = (System.currentTimeMillis() - tempoInicial);
         } else if (jRadioButtonQuick.isSelected()) {
-            OrdenaVetor.quickSort(dicionario, 0, dicionario.length);
+            long tempoInicial = System.currentTimeMillis();
+            OrdenaVetor.quickSort(dicionario, 0, dicionario.length-1);
             resposta = Buscas.buscaBinaria(palavraABuscar(), dicionario);
+            long tempoFinal = (System.currentTimeMillis()- tempoInicial);
+            respostaTempo = tempoFinal;
         }
 
         if (resposta) {
@@ -321,12 +356,19 @@ public class MenuInicial extends javax.swing.JFrame {
         } else {
             jLabelResposta.setText("A palavra buscada não está no dicionário do idioma.");
         }
+        jLabelTempo.setText("Tempo de execucao: " + respostaTempo + "ms");
+        
+        
+        
         } catch (IOException ex) {
             Logger.getLogger(MenuInicial.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Selecione um idioma a ser usado.");
             ex.printStackTrace();
         }
+        
+        
+        
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -378,6 +420,7 @@ public class MenuInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelResposta;
+    private javax.swing.JLabel jLabelTempo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButtonBubble;

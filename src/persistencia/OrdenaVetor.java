@@ -53,12 +53,43 @@ public class OrdenaVetor {
         }System.out.println("Ordenacao concluida.");
     }
 
-    public static void quickSort(String[] vetor, int inicio, int fim) {
-        if (inicio < fim) {
-            int posicaoPivo = dividir(vetor, inicio, fim);
-            quickSort(vetor, inicio, posicaoPivo - 1);
-            quickSort(vetor, posicaoPivo + 1, fim);
+    /*public static void quickSort(String[] vetor, int inicio, int fim) {
+    if (inicio < fim) {
+    int posicaoPivo = dividir(vetor, inicio, fim);
+    quickSort(vetor, inicio, posicaoPivo - 1);
+    quickSort(vetor, posicaoPivo + 1, fim);
+    }
+    }*/
+    
+    public static void quickSort(String v[], int esquerda, int direita) {
+        int esq = esquerda; //inicio do vetor 
+        int dir = direita; //fim do vetor = tamanho do vetor
+        int pivo = v[(esq + dir) / 2].length();
+        String troca;
+
+        while (esq <= dir) {
+            while (v[esq].length() < pivo) {
+                esq = esq + 1;
+            }
+            while (v[dir].length() > pivo) {
+                dir = dir - 1;
+            }
+            if (esq <= dir) {
+                troca = v[esq];
+                v[esq] = v[dir];
+                v[dir] = troca;
+                esq = esq + 1;
+                dir = dir - 1;
+            }
         }
+        if (dir > esquerda) {
+            quickSort(v, esquerda, dir);
+        }
+
+        if (esq < direita) {
+            quickSort(v, esq, direita);
+        }
+
     }
 
     public static void mergeSort(int tamanho, String[] vet) {
